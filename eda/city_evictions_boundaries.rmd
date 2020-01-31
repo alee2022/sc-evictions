@@ -1,0 +1,36 @@
+---
+title: "city_evictions_boundaries"
+author: "Andrew Lee"
+date: "`r Sys.Date()`"
+output: 
+  github_document:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r message=FALSE, warning=FALSE}
+# Libraries
+library(tidyverse)
+
+# Parameters
+joined_data <- here::here("data/city_evictions_boundaries.rds")
+```
+
+## Reading in Data
+
+```{r}
+df <- read_rds(joined_data)
+```
+
+
+### Finding the City with the Most Evictions in 2016
+
+```{r}
+df %>% 
+  top_n(1, wt = evictions)
+```
+
+We found that North Charleston had the most evictions in 2016 among the cities in South Carolina.
